@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "provenance": {
+    "tool_name": "cors-configuration-analyzer",
+    "tool_version": "0.1.0",
+    "config_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "inputs": [],
+    "analysis_started_at": "2026-01-15T10:00:00Z",
+    "analysis_ended_at": "2026-01-15T10:00:01Z",
+    "environment": {"python_version": "3.12.0", "platform": "test"}
+  },
+  "findings": [
+    {
+      "id": "cors-misconfig-1",
+      "title": "CORS misconfiguration: wildcard_with_credentials",
+      "classification": "INFERRED",
+      "confidence": {"score": 0.95, "rationale": "Access-Control-Allow-Origin: * with Allow-Credentials: true", "supporting_indicators": ["wildcard_with_credentials"]},
+      "evidence": [{"source": "har", "locator": {"url": "https://app.example.com/api/login"}, "retrieved_at": "2026-01-15T10:00:05Z"}],
+      "method": "CORS policy rule engine",
+      "why_it_matters": "Misconfigured CORS enables cross-origin data theft.",
+      "plain_language": "Wildcard CORS with credentials at /api/login.",
+      "severity": "critical",
+      "tags": ["cors", "wildcard_with_credentials"]
+    },
+    {
+      "id": "session-cookie-1",
+      "title": "Cookie issue: sessionid — Missing Secure flag",
+      "classification": "INFERRED",
+      "confidence": {"score": 0.85, "rationale": "Session cookie without Secure", "supporting_indicators": ["sessionid"]},
+      "evidence": [{"source": "har", "locator": {"cookie": "sessionid"}, "retrieved_at": "2026-01-15T10:00:00Z"}],
+      "method": "Session cookie heuristic",
+      "why_it_matters": "Session cookies need Secure flag.",
+      "plain_language": "sessionid cookie insecure.",
+      "severity": "high",
+      "tags": ["cookie-issue", "session", "missing-secure"]
+    }
+  ],
+  "is_sample_data": true
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "provenance": {
+    "tool_name": "cookie-security-inspector",
+    "tool_version": "0.1.0",
+    "config_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "inputs": [],
+    "analysis_started_at": "2026-01-15T10:00:00Z",
+    "analysis_ended_at": "2026-01-15T10:00:01Z",
+    "environment": {"python_version": "3.12.0", "platform": "test"}
+  },
+  "findings": [
+    {
+      "id": "cookie-issue-1",
+      "title": "Cookie issue: sessionid — Missing Secure flag",
+      "classification": "INFERRED",
+      "confidence": {"score": 0.88, "rationale": "Missing Secure flag", "supporting_indicators": ["sessionid"]},
+      "evidence": [{"source": "har", "locator": {"cookie": "sessionid"}, "retrieved_at": "2026-01-15T10:00:00Z"}],
+      "method": "RFC 6265 flag compliance check",
+      "why_it_matters": "Insecure cookies enable session hijacking.",
+      "plain_language": "Cookie sessionid missing Secure.",
+      "severity": "high",
+      "tags": ["cookie-issue", "missing-secure"]
+    }
+  ],
+  "is_sample_data": true
+}
